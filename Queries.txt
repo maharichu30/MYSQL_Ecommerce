@@ -51,24 +51,6 @@ output:
 2	Product B	35.00	Description for Product B	0.00
 1	Product A	25.00	Description for Product A	0.00
 
-Question6:Get the names of customers who have ordered Product A.
-
-Answer:
-SELECT c.name
-FROM customers c
-WHERE EXISTS (
-    SELECT 1
-    FROM orders o
-    JOIN order_items oi ON o.id = oi.order_id
-    JOIN products p ON oi.product_id = p.id
-    WHERE o.customer_id = c.id
-      AND p.name = 'Product A'
-);
-
-
-Output:
-Alice Johnson
-
 Question7:Join the orders and customers tables to retrieve the customer's name and order date for each order.
 
 Answer:
@@ -108,6 +90,24 @@ output:
 2	1	2	1	
 3	2	2	2	
 4	3	1	1	
+
+Question6:Get the names of customers who have ordered Product A.
+
+Answer:
+SELECT c.name
+FROM customers c
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    JOIN order_items oi ON o.id = oi.order_id
+    JOIN products p ON oi.product_id = p.id
+    WHERE o.customer_id = c.id
+      AND p.name = 'Product A'
+);
+
+
+Output:
+Alice Johnson
 
 
 Question10:Retrieve the average total of all orders.
